@@ -1,6 +1,15 @@
 package table;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+
+import cell.Cell;
+import cell.CellHandler;
+import cell.ExpressionCell;
+
+import java.awt.*;
+import java.awt.event.*;
 
 public class Table extends JScrollPane {
 	private JTable mainTable;
@@ -19,10 +28,34 @@ public class Table extends JScrollPane {
 	}
 
 	private void initMainTable() {
+
 		mainTable = new JTable(this.rows, this.cols);
 
 		mainTable.setCellSelectionEnabled(true);
-		mainTable.setBounds(30, 40, 200, 300);
+		mainTable.getTableHeader().setReorderingAllowed(false);
+		mainTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		mainTable.getModel().addTableModelListener(
+			new TableModelListener() {
+				public void tableChanged(TableModelEvent evt) 
+				{
+					int column = evt.getColumn();
+					int row = evt.getFirstRow();
+
+					String value = mainTable.getValueAt(row, column).toString();
+
+					Cell cell = CellHandler.getCellType(value, mainTable);
+					cell.setRow(row);
+					cell.setColumn(column);
+					System.out.println(cell.getValue());
+
+					if(cell.getValue() != value)
+						mainTable.setValueAt(cell.getValue(), row, column);
+				}
+			}
+		);
+
+
 	}
 
 	private void initRowHeader() {

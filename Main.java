@@ -4,14 +4,14 @@ import table.Table;
 
 class Main {
   public static void main(String[] args){
-    JFrame f;
-    f = new JFrame();
-		f.setTitle("JTable Example");
+    JFrame frame = new JFrame();
+		frame.setTitle("Foglio elettronico");
 
-    Table table = new Table(4, 4);
+    Table table = new Table(80, 20);
 
-		f.add(table);
-		f.setSize(500, 200);
-		f.setVisible(true);
+		frame.add(table);
+		frame.setSize(720, 480);
+		frame.setVisible(true);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 }
