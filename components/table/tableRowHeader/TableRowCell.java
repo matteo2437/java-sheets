@@ -1,4 +1,4 @@
-package table;
+package components.table.tableRowHeader;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.*;

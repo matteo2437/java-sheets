@@ -1,4 +1,4 @@
-package cell;
+package components.cells;
 
 import javax.swing.JTable;
 

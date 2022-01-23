@@ -1,4 +1,4 @@
-package cell;
+package components.cells.types;
 
 public enum Operation {
   SUM,

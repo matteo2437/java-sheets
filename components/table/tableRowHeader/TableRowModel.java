@@ -1,4 +1,4 @@
-package table;
+package components.table.tableRowHeader;
 import javax.swing.table.DefaultTableModel;
 
 public class TableRowModel extends DefaultTableModel {  

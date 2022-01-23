@@ -1,12 +1,12 @@
-package table;
+package components.table;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
-import cell.Cell;
-import cell.CellHandler;
-import cell.ExpressionCell;
+import components.cells.Cell;
+import components.cells.CellHandler;
+import components.table.tableRowHeader.TableRowHeader;
 
 import java.awt.*;
 import java.awt.event.*;

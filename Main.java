@@ -1,6 +1,6 @@
 import javax.swing.JFrame;
 
-import table.Table;
+import components.table.Table;
 
 class Main {
   public static void main(String[] args){

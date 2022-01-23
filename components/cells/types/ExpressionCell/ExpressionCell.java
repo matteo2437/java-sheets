@@ -1,6 +1,8 @@
-package cell;
-
+package components.cells.types.ExpressionCell;
 import javax.swing.JTable;
+
+import components.cells.Cell;
+import components.cells.types.Operation;
 
 public class ExpressionCell extends Cell{
 
@@ -21,7 +23,7 @@ public class ExpressionCell extends Cell{
     int column1 = rows.indexOf(expression.charAt(0));
     int row1 = expression.charAt(1) - 48;
 
-    Operation operand = Operation
+    Operation operation = Operation
       .values()[operands.indexOf(expression.charAt(2))];
 
     int column2 = rows.indexOf(expression.charAt(3));
@@ -38,7 +40,7 @@ public class ExpressionCell extends Cell{
 
     double calculatedValue;
 
-    switch(operand){
+    switch(operation){
       case SUM:
         calculatedValue = firstValue + secondValue;
         return calculatedValue + "";

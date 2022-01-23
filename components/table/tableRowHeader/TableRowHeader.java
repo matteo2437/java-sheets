@@ -1,4 +1,4 @@
-package table;
+package components.table.tableRowHeader;
 import java.awt.*;
 import javax.swing.*;
 
@@ -7,7 +7,7 @@ public class TableRowHeader extends JTable {
   private TableRowModel model;
   private int numRows;
 
-  TableRowHeader(JTable mainTable){
+  public TableRowHeader(JTable mainTable){
     super();
     this.mainTable = mainTable;
 
