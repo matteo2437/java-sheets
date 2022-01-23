@@ -6,13 +6,15 @@ public class Cell {
   private int row;
   private int column;
   protected String value;
-  protected JTable table;
 
-  public Cell(String value, JTable table) {
+  public Cell(String value) {
     this.value = value;
-    this.table = table;
   }
-  
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+    
   public String getValue() {
     return value;
   }

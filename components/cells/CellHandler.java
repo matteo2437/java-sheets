@@ -1,33 +1,26 @@
 package components.cells;
 
-import javax.swing.JTable;
-
 import components.cells.types.LabelCell;
 import components.cells.types.NumberCell;
 import components.cells.types.ExpressionCell.ExpressionCell;
+import lib.Utilities;
 
 public class CellHandler {
 
-  public static Cell getCellType(String value, JTable table) {
+  public static Cell getCellType(String value) {
     if(isAnExpression(value))
-      return new ExpressionCell(value, table);
+      return new ExpressionCell(value);
 
-    if(isANumber(value))
-      return new NumberCell(value, table);
+    if(Utilities.isANumber(value))
+      return new NumberCell(value);
 
-    return new LabelCell(value, table);
+    return new LabelCell(value);
   }
 
-  private static boolean isAnExpression(String value) {
-    return value.charAt(0) == '=';
-  }
+  private static boolean isAnExpression(String string) {
+    if(string.length() == 0)
+      return false;
 
-  private static boolean isANumber(String value) {
-    try {  
-      Double.parseDouble(value);  
-      return true;
-    } catch(NumberFormatException e){  
-      return false;  
-    }  
+    return string.charAt(0) == '=';
   }
 }

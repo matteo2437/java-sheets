@@ -4,7 +4,7 @@ import javax.swing.JTable;
 import components.cells.Cell;
 
 public class LabelCell extends Cell {
-  public LabelCell(String value, JTable table) {
-    super(value, table);
+  public LabelCell(String value) {
+    super(value);
   }
 }

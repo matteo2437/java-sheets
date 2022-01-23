@@ -2,29 +2,57 @@ package components.cells.types.ExpressionCell;
 import javax.swing.JTable;
 
 import components.cells.Cell;
-import components.cells.types.Operation;
+import lib.ExpressionSolver;
+import lib.Utilities;
 
 public class ExpressionCell extends Cell{
+  private String expression;
 
-  public ExpressionCell(String value, JTable table) {
-    super(value, table);
+  public ExpressionCell(String value) {
+    super(value);
   }
 
-  public String calculateValue(String expression) {
+  public void setExpression(String expression) {
+    this.expression = expression.substring(1).toUpperCase();
+  }
+
+  private boolean isANumber(char c) {
+    return Utilities.isANumber(Character.toString(c));
+  }
+
+  private String getNumber(int startIndex) {
+    int index = 0;
+
+    while(
+      isANumber(expression.charAt(index)) ||
+      index > expression.length()
+    ) { 
+      index ++;
+    }
+    
+    return expression.substring(startIndex, index);
+  }
+
+  public String calculateValue() {
     String errorStr = "#Error"; 
 
-    expression = expression.substring(1).toUpperCase();
-    if (expression.length() != 5)
-      return errorStr;
-
     String rows = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    String operands = "+-*/";
 
+    boolean isStartingWithANumber = isANumber(expression.charAt(0));
+
+    if(isStartingWithANumber) {
+      int i = 0;
+      for(i = 0; i < expression.length(); i++){
+        if(!Utilities.isANumber(Character.toString(expression.charAt(i))))
+          break;
+      }   
+      
+      System.out.println(expression.substring(0, i));
+    }
+
+/*
     int column1 = rows.indexOf(expression.charAt(0));
     int row1 = expression.charAt(1) - 48;
-
-    Operation operation = Operation
-      .values()[operands.indexOf(expression.charAt(2))];
 
     int column2 = rows.indexOf(expression.charAt(3));
     int row2 = expression.charAt(4) - 48;
@@ -38,28 +66,21 @@ public class ExpressionCell extends Cell{
     double firstValue = Double.parseDouble(String.valueOf(firstValueStr));
     double secondValue = Double.parseDouble(String.valueOf(secondValueStr));
 
-    double calculatedValue;
 
-    switch(operation){
-      case SUM:
-        calculatedValue = firstValue + secondValue;
-        return calculatedValue + "";
-      case SUB:
-        calculatedValue = firstValue - secondValue;
-        return calculatedValue + "";
-      case MUL:
-        calculatedValue = firstValue * secondValue;
-        return calculatedValue + "";
-      case DIV:
-        calculatedValue = firstValue / secondValue;
-        return calculatedValue + "";
-    }
+    ExpressionSolver expressionSolver = new ExpressionSolver();
+    expressionSolver.firstOperand(firstValue);
+    expressionSolver.secondOperand(secondValue);
+    boolean areErrors = expressionSolver.setOperation(expression.charAt(2));
+*/
+    //if(areErrors)
+      return errorStr;
 
-    return errorStr;
+    //return expressionSolver.solve() + "";
   }
 
   @Override
   public String getValue() {
-    return calculateValue(super.value);
+    setExpression(super.value);
+    return calculateValue();
   }
 }

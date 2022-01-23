@@ -29,33 +29,12 @@ public class Table extends JScrollPane {
 
 	private void initMainTable() {
 
-		mainTable = new JTable(this.rows, this.cols);
+		MainTableModel model = new MainTableModel(this.rows, this.cols);
+		mainTable = new JTable(model);
 
 		mainTable.setCellSelectionEnabled(true);
 		mainTable.getTableHeader().setReorderingAllowed(false);
 		mainTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-		mainTable.getModel().addTableModelListener(
-			new TableModelListener() {
-				public void tableChanged(TableModelEvent evt) 
-				{
-					int column = evt.getColumn();
-					int row = evt.getFirstRow();
-
-					String value = mainTable.getValueAt(row, column).toString();
-
-					Cell cell = CellHandler.getCellType(value, mainTable);
-					cell.setRow(row);
-					cell.setColumn(column);
-					System.out.println(cell.getValue());
-
-					if(cell.getValue() != value)
-						mainTable.setValueAt(cell.getValue(), row, column);
-				}
-			}
-		);
-
-
 	}
 
 	private void initRowHeader() {
