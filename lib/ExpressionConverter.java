@@ -1,11 +1,17 @@
 package lib;
 
+import javax.swing.JTable;
+
+import components.cells.Cell;
+
 public class ExpressionConverter {
   private final String expression;
+  private final Cell[][] cells;
   private int nextIndex;
 
-  public ExpressionConverter(String expression) {
+  public ExpressionConverter(String expression, Cell[][] cells) {
     this.nextIndex = 0;
+    this.cells = cells;
     this.expression = expression
       .substring(1)
       .toUpperCase()
@@ -14,52 +20,68 @@ public class ExpressionConverter {
 
   private int getColumn(char c) {
     String rows = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    return rows.indexOf(expression.charAt(0));
+    return rows.indexOf(expression.charAt(nextIndex));
   }
 
   private boolean isANumber(char c) {
     return Utilities.isANumber(Character.toString(c));
   }
 
-  private Double getNumber(int startIndex, boolean includeDots) {
-    int index = 0;
+  private double getNumber(int startIndex, boolean includeDots) {
+    int index = startIndex;
 
     while(
       isANumber(expression.charAt(index)) ||
-      (expression.charAt(index) == '.' && includeDots) ||
-      index > expression.length()
+      (includeDots && expression.charAt(index) == '.')      
     ) { 
       index ++;
+
+      if(index >= expression.length())
+        break;
     }
-    
-    nextIndex = index + 1;
+
+    nextIndex = index;
     return Double.parseDouble(expression.substring(startIndex, index));
   }
   
   public double getOperand() {
     char character = expression.charAt(nextIndex);
     boolean isStartingWithANumber = isANumber(character);
+    System.out.println(character);
+
     if(isStartingWithANumber) {
-      return getNumber(0, true);
+      return getNumber(nextIndex, true);
     }
     else {
       int column = getColumn(character);
-      int row = (int)Math.round(getNumber(1, false));
+      nextIndex++;
 
-      return 0;//importa tabella;
+      double val = getNumber(nextIndex, false);
+      int row = (int)Math.round(val);
+
+      return Double.parseDouble(cells[row][column].getValue().toString());
     }
   }
 
-  public void convert() {
+  public ExpressionSolver convert() {
     double firstValue;
     double secondValue;
     char operation;
 
     firstValue = getOperand();
+    System.out.println(firstValue);
 
     operation = expression.charAt(nextIndex);
     nextIndex++;
 
     secondValue = getOperand();
+    System.out.println(secondValue);
+    
+    ExpressionSolver expressionSolver = new ExpressionSolver();
+    expressionSolver.setFirstOperand(firstValue);
+    expressionSolver.setSecondOperand(secondValue);;
+    expressionSolver.setOperation(operation);
+
+    return expressionSolver;
   }
 }

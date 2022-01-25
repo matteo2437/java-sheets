@@ -1,5 +1,7 @@
 package components.cells;
 
+import javax.swing.JTable;
+
 import components.cells.types.LabelCell;
 import components.cells.types.NumberCell;
 import components.cells.types.ExpressionCell.ExpressionCell;
@@ -7,14 +9,14 @@ import lib.Utilities;
 
 public class CellHandler {
 
-  public static Cell getCellType(String value) {
+  public static Cell getCellType(String value, Cell[][] cells) {
     if(isAnExpression(value))
-      return new ExpressionCell(value);
+      return new ExpressionCell(value, cells);
 
     if(Utilities.isANumber(value))
-      return new NumberCell(value);
+      return new NumberCell(value, cells);
 
-    return new LabelCell(value);
+    return new LabelCell(value, cells);
   }
 
   private static boolean isAnExpression(String string) {

@@ -6,9 +6,11 @@ public class Cell {
   private int row;
   private int column;
   protected String value;
+  protected Cell[][] cells;
 
-  public Cell(String value) {
+  public Cell(String value, Cell[][] cells) {
     this.value = value;
+    this.cells = cells;
   }
 
   public void setValue(String value) {

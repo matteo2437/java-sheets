@@ -7,11 +7,11 @@ public class ExpressionSolver {
 
   public ExpressionSolver() {}
 
-  public void firstOperand(double value) {
+  public void setFirstOperand(double value) {
     firstOperand = value;
   }
 
-  public void secondOperand(double value) {
+  public void setSecondOperand(double value) {
     secondOperand = value;
   }
 

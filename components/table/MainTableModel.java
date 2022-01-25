@@ -19,7 +19,7 @@ public class MainTableModel extends AbstractTableModel {
 
   @Override
   public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-    cells[rowIndex][columnIndex] = CellHandler.getCellType(String.valueOf(aValue));
+    cells[rowIndex][columnIndex] = CellHandler.getCellType(String.valueOf(aValue), cells);
   }
 
   @Override
@@ -40,7 +40,7 @@ public class MainTableModel extends AbstractTableModel {
   @Override
   public Object getValueAt(int rowIndex, int columnIndex) {
     if(cells[rowIndex][columnIndex] == null)
-      cells[rowIndex][columnIndex] = CellHandler.getCellType("");
+      cells[rowIndex][columnIndex] = CellHandler.getCellType("", cells);
 
     return cells[rowIndex][columnIndex].getValue();
   }
