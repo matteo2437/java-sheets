@@ -17,6 +17,10 @@ public class MainTableModel extends AbstractTableModel {
     this.cells = new Cell[rows][cols];
   }
 
+  public Cell getCell(int rowIndex, int columnIndex){
+    return cells[rowIndex][columnIndex];
+  }
+
   @Override
   public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
     cells[rowIndex][columnIndex] = CellHandler.getCellType(String.valueOf(aValue), cells);

@@ -1,19 +1,14 @@
 package components.table;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 
 import components.cells.Cell;
-import components.cells.CellHandler;
 import components.table.tableRowHeader.TableRowHeader;
 
-import java.awt.*;
-import java.awt.event.*;
-
 public class Table extends JScrollPane {
-	private JTable mainTable;
-	private TableRowHeader rowHeader;
+	private final JTable mainTable;
+	private final MainTableModel tableModel;
+	private final TableRowHeader rowHeader;
 	
 	private int rows;	
 	private int cols;
@@ -23,22 +18,23 @@ public class Table extends JScrollPane {
 		this.rows = rows;
 		this.cols = cols;
 
+		tableModel = new MainTableModel(this.rows, this.cols);
+		mainTable = new JTable(tableModel);
+		rowHeader = new TableRowHeader(mainTable);
+
 		initMainTable();
 		initRowHeader();
 	}
 
 	private void initMainTable() {
-
-		MainTableModel model = new MainTableModel(this.rows, this.cols);
-		mainTable = new JTable(model);
-
 		mainTable.setCellSelectionEnabled(true);
 		mainTable.getTableHeader().setReorderingAllowed(false);
 		mainTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	}
 
+
+
 	private void initRowHeader() {
-		rowHeader = new TableRowHeader(mainTable);
 		super.setViewportView(mainTable);
     super.setRowHeaderView(rowHeader);
 	}
@@ -49,5 +45,9 @@ public class Table extends JScrollPane {
 
 	public TableRowHeader getTableRowHeader() {
 		return rowHeader;
+	}
+
+	public Cell getCell(int rowIndex, int columnIndex) {
+		return tableModel.getCell(rowIndex, columnIndex);
 	}
 }

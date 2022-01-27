@@ -1,7 +1,4 @@
 package lib;
-
-import javax.swing.JTable;
-
 import components.cells.Cell;
 
 public class ExpressionConverter {
@@ -28,6 +25,10 @@ public class ExpressionConverter {
   }
 
   private double getNumber(int startIndex, boolean includeDots) {
+    if(!isANumber(expression.charAt(startIndex))){
+      return 0;
+    }
+      
     int index = startIndex;
 
     while(
@@ -47,7 +48,6 @@ public class ExpressionConverter {
   public double getOperand() {
     char character = expression.charAt(nextIndex);
     boolean isStartingWithANumber = isANumber(character);
-    System.out.println(character);
 
     if(isStartingWithANumber) {
       return getNumber(nextIndex, true);
@@ -69,13 +69,11 @@ public class ExpressionConverter {
     char operation;
 
     firstValue = getOperand();
-    System.out.println(firstValue);
 
     operation = expression.charAt(nextIndex);
     nextIndex++;
 
     secondValue = getOperand();
-    System.out.println(secondValue);
     
     ExpressionSolver expressionSolver = new ExpressionSolver();
     expressionSolver.setFirstOperand(firstValue);

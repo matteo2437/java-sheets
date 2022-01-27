@@ -1,10 +1,6 @@
 package components.cells;
 
-import javax.swing.JTable;
-
 public class Cell {
-  private int row;
-  private int column;
   protected String value;
   protected Cell[][] cells;
 
@@ -21,11 +17,7 @@ public class Cell {
     return value;
   }
 
-  public void setColumn(int column) {
-    this.column = column;
-  }
-
-  public void setRow(int row) {
-    this.row = row;
+  public String getDisplayValue() {
+    return value;
   }
 }
