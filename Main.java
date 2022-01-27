@@ -1,12 +1,8 @@
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import components.SpreadSheet;
-import components.table.Table;
 
 class Main {
   public static void main(String[] args){

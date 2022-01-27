@@ -63,7 +63,7 @@ public class ExpressionConverter {
     }
   }
 
-  public ExpressionSolver convert() {
+  public Expression convert() {
     double firstValue;
     double secondValue;
     char operation;
@@ -75,7 +75,7 @@ public class ExpressionConverter {
 
     secondValue = getOperand();
     
-    ExpressionSolver expressionSolver = new ExpressionSolver();
+    Expression expressionSolver = new Expression();
     expressionSolver.setFirstOperand(firstValue);
     expressionSolver.setSecondOperand(secondValue);;
     expressionSolver.setOperation(operation);

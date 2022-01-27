@@ -1,7 +1,5 @@
 package components.cells;
 
-import javax.swing.JTable;
-
 import components.cells.types.LabelCell;
 import components.cells.types.NumberCell;
 import components.cells.types.ExpressionCell.ExpressionCell;

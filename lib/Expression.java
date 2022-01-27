@@ -1,11 +1,11 @@
 package lib;
 
-public class ExpressionSolver {
+public class Expression {
   private double firstOperand;
   private double secondOperand;
   private Operation operation;
 
-  public ExpressionSolver() {}
+  public Expression() {}
 
   public void setFirstOperand(double value) {
     firstOperand = value;

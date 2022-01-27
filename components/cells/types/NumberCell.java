@@ -1,5 +1,4 @@
 package components.cells.types;
-import javax.swing.JTable;
 
 import components.cells.Cell;
 
