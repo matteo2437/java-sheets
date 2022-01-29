@@ -1,5 +1,7 @@
 package lib;
 
+import lib.operators.Operator;
+
 public class Expression {
   private double firstOperand;
   private double secondOperand;
@@ -7,12 +9,12 @@ public class Expression {
 
   public Expression() {}
 
-  public void setFirstOperand(double value) {
-    firstOperand = value;
+  public void setFirstOperand(Operator<?> operator) {
+    firstOperand = operator.get();
   }
 
-  public void setSecondOperand(double value) {
-    secondOperand = value;
+  public void setSecondOperand(Operator<?> operator) {
+    secondOperand = operator.get();;
   }
 
   public boolean setOperation(char operation) {

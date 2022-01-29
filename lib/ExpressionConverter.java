@@ -1,5 +1,8 @@
 package lib;
 import components.cells.Cell;
+import lib.operators.Operator;
+import lib.operators.OperatorCell;
+import lib.operators.OperatorNumber;
 
 public class ExpressionConverter {
   private final String expression;
@@ -45,12 +48,12 @@ public class ExpressionConverter {
     return Double.parseDouble(expression.substring(startIndex, index));
   }
   
-  public double getOperand() {
+  public Operator<?> getOperand() {
     char character = expression.charAt(nextIndex);
     boolean isStartingWithANumber = isANumber(character);
 
     if(isStartingWithANumber) {
-      return getNumber(nextIndex, true);
+      return new OperatorNumber(getNumber(nextIndex, true));
     }
     else {
       int column = getColumn(character);
@@ -59,13 +62,13 @@ public class ExpressionConverter {
       double val = getNumber(nextIndex, false);
       int row = (int)Math.round(val);
 
-      return Double.parseDouble(cells[row][column].getValue().toString());
+      return new OperatorCell(cells[row][column]);
     }
   }
 
   public Expression convert() {
-    double firstValue;
-    double secondValue;
+    Operator<?> firstValue;
+    Operator<?> secondValue;
     char operation;
 
     firstValue = getOperand();
