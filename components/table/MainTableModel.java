@@ -8,13 +8,21 @@ import components.cells.CellHandler;
 public class MainTableModel extends AbstractTableModel {
   private final int rows;
   private final int cols;
-  private final Cell[][] cells;
+  private Cell[][] cells;
 
   public MainTableModel(int rows, int cols) {
     this.rows = rows;
     this.cols = cols;
 
     this.cells = new Cell[rows][cols];
+  }
+
+  public Cell[][] getCells() {
+    return cells;
+  }
+
+  public void setCells(Cell[][] cells) {
+    this.cells = cells;
   }
 
   public Cell getCell(int rowIndex, int columnIndex){

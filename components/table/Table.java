@@ -50,4 +50,16 @@ public class Table extends JScrollPane {
 	public Cell getCell(int rowIndex, int columnIndex) {
 		return tableModel.getCell(rowIndex, columnIndex);
 	}
+
+	public Cell[][] getCells() {
+		return tableModel.getCells();
+	}
+
+	public void setCells(Cell[][] cells) {
+		tableModel.setCells(cells);
+	}
+
+	public void refresh() {
+		tableModel.fireTableStructureChanged();
+	}
 }

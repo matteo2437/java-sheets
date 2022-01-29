@@ -1,6 +1,7 @@
 package components;
 
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
@@ -61,18 +62,16 @@ public class SpreadSheet extends JPanel {
   }
 
   private Cell getSelectedCell() {
-    final int row = table
-      .getMainTable()
+    final int row = getTable()
       .getSelectedRow();  
 
-    final int column = table
-      .getMainTable()
+    final int column = getTable()
       .getSelectedColumn();  
 
     return table
       .getCell(row, column);
   }
-  
+
   private void addTextField() {
     JPanel textFieldPanel = new JPanel();
     textFieldPanel.add(textField);
@@ -85,5 +84,21 @@ public class SpreadSheet extends JPanel {
   private void addComponents() {
     addTextField();
     super.add(table);
+  }
+
+  public JTable getTable() {
+    return table.getMainTable();
+  }
+
+  public Cell[][] getCells() {
+    return table.getCells();
+  }
+
+  public void setCells(Cell[][] cells) {
+    table.setCells(cells);
+  }
+
+  public void refresh() {
+    table.refresh();
   }
 }

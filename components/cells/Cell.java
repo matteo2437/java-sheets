@@ -1,6 +1,8 @@
 package components.cells;
 
-public class Cell {
+import java.io.Serializable;
+
+public class Cell implements Serializable{
   protected String value;
   protected Cell[][] cells;
 
