@@ -45,7 +45,11 @@ public class MenuBar extends JMenuBar{
   private JMenuItem getSaveMenuItem() {
     return new JMenuItem(new AbstractAction("Salva") {
       public void actionPerformed(ActionEvent e) {
-        fileChooser.showSaveDialog(null);
+        int resultFileChooser = fileChooser.showSaveDialog(null);
+
+        if(resultFileChooser != JFileChooser.APPROVE_OPTION)
+          return;
+
         File saveFile = fileChooser.getSelectedFile();
         if(saveFile.exists()) {
           int result = JOptionPane.showConfirmDialog(
@@ -69,7 +73,10 @@ public class MenuBar extends JMenuBar{
   private JMenuItem getLoadMenuItem() {
     return new JMenuItem(new AbstractAction("Carica") {
       public void actionPerformed(ActionEvent e) {
-        fileChooser.showOpenDialog(null);
+        int resultFileChooser = fileChooser.showOpenDialog(null);
+        
+        if(resultFileChooser != JFileChooser.APPROVE_OPTION)
+          return;
         
         fileManager.load(fileChooser.getSelectedFile());
       }

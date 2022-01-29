@@ -40,13 +40,11 @@ public class FileManager {
   }
 
   public void readAutoSaveFilePath() {
-    try {
+    try (
       FileReader fw = new FileReader("paths.txt");
       Scanner sc = new Scanner(fw);
-      String a = sc.nextLine();
-      autoSaveFile = new File(a);
-      sc.close();
-      fw.close();
+    ) {
+      autoSaveFile = new File(sc.nextLine());
     } 
     catch(IOException e) {
       saveAutoSaveFilePath();
@@ -54,12 +52,12 @@ public class FileManager {
   }
 
   public void saveAutoSaveFilePath() {
-    try {
+    try (
+      FileWriter fw = new FileWriter("paths.txt");
+    ) {
       autoSaveFile = File.createTempFile("autosave", ".tmp");
 
-      FileWriter fw = new FileWriter("paths.txt");
       fw.write(autoSaveFile.getPath() + "\n");
-      fw.close();
     }
     catch(IOException e) {
       e.printStackTrace();
@@ -78,12 +76,11 @@ public class FileManager {
   } 
 
   public void save(File file) {
-    try {
+    try (
       FileOutputStream fos = new FileOutputStream(file);
       ObjectOutputStream oos = new ObjectOutputStream(fos);
+    ) {
       oos.writeObject(spreadSheet.getCells());
-      oos.close();
-
       System.out.println("File salvato");
     } catch (IOException e) {
       e.printStackTrace();
@@ -91,15 +88,12 @@ public class FileManager {
   }
 
   public void load(File file) {
-    try {
+    try (
       FileInputStream fis = new FileInputStream(file);
       ObjectInputStream ois = new ObjectInputStream(fis);
-
+    ) {
       spreadSheet.setCells((Cell[][]) ois.readObject());
       spreadSheet.refresh();
-
-      ois.close();
-
       System.out.println("File caricato");
     }
     catch (FileNotFoundException e) {
