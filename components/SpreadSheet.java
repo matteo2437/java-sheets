@@ -2,7 +2,12 @@ package components;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 import java.awt.event.*;
+import java.awt.*;
 
 import components.cells.Cell;
 import components.table.Table;
@@ -33,10 +38,20 @@ public class SpreadSheet extends JPanel {
   }
 
   private void listenTextFieldChange() {
-    textField.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e){        
-        getSelectedCell().setValue(textField.getText());        
-     }
+    textField.getDocument().addDocumentListener(new DocumentListener() {
+      public void changedUpdate(DocumentEvent e) {
+        warn();
+      }
+      public void removeUpdate(DocumentEvent e) {
+        warn();
+      }
+      public void insertUpdate(DocumentEvent e) {
+        warn();
+      }
+    
+      public void warn() {
+        getSelectedCell().setValue(textField.getText());     
+      }
     });
   }
 
@@ -58,8 +73,17 @@ public class SpreadSheet extends JPanel {
       .getCell(row, column);
   }
   
+  private void addTextField() {
+    JPanel textFieldPanel = new JPanel();
+    textFieldPanel.add(textField);
+    textFieldPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+    textFieldPanel.setLayout(new GridLayout(0, 1));
+
+    super.add(textFieldPanel);
+  }
+
   private void addComponents() {
-    super.add(textField);
+    addTextField();
     super.add(table);
   }
 }
