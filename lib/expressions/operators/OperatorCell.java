@@ -1,6 +1,7 @@
 package lib.expressions.operators;
 
 import components.cells.Cell;
+import lib.Utilities;
 
 public class OperatorCell extends Operator<Cell> {
   
@@ -12,9 +13,11 @@ public class OperatorCell extends Operator<Cell> {
   public double get() {
     String value = operatorType.getValue();
 
-    if(value.isEmpty()) {
+    if(!Utilities.isANumber(value))
       return 0;
-    }
+
+    if(value.isEmpty())
+      return 0;
 
     return Double.parseDouble(value); 
   }

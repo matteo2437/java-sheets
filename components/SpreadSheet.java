@@ -77,6 +77,7 @@ public class SpreadSheet extends JPanel {
     textFieldPanel.add(textField);
     textFieldPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
     textFieldPanel.setLayout(new GridLayout(0, 1));
+    textFieldPanel.setMaximumSize(new Dimension(2147483647, 72));
 
     super.add(textFieldPanel);
   }
