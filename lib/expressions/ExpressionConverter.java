@@ -1,8 +1,9 @@
-package lib;
+package lib.expressions;
 import components.cells.Cell;
-import lib.operators.Operator;
-import lib.operators.OperatorCell;
-import lib.operators.OperatorNumber;
+import lib.Utilities;
+import lib.expressions.operators.Operator;
+import lib.expressions.operators.OperatorCell;
+import lib.expressions.operators.OperatorNumber;
 
 public class ExpressionConverter {
   private final String expression;

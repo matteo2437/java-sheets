@@ -1,4 +1,4 @@
-package lib.operators;
+package lib.expressions.operators;
 
 public abstract class Operator<T> {
   protected T operatorType;

@@ -1,4 +1,4 @@
-package lib.operators;
+package lib.expressions.operators;
 
 import components.cells.Cell;
 

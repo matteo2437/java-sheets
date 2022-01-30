@@ -1,7 +1,7 @@
 package components.cells.types;
 
 import components.cells.Cell;
-import lib.ExpressionConverter;
+import lib.expressions.ExpressionConverter;
 
 public class ExpressionCell extends Cell{
   private String expression;

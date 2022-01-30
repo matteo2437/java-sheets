@@ -1,4 +1,4 @@
-package lib.operators;
+package lib.expressions.operators;
 
 public class OperatorNumber extends Operator<Double> {
   

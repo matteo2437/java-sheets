@@ -1,6 +1,6 @@
-package lib;
+package lib.expressions;
 
-import lib.operators.Operator;
+import lib.expressions.operators.Operator;
 
 public class Expression {
   private double firstOperand;
