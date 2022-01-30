@@ -1,8 +1,8 @@
 package components.cells;
 
+import components.cells.types.ExpressionCell;
 import components.cells.types.LabelCell;
 import components.cells.types.NumberCell;
-import components.cells.types.ExpressionCell.ExpressionCell;
 import lib.Utilities;
 
 public class CellHandler {

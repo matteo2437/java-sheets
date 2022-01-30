@@ -1,4 +1,4 @@
-package components.cells.types.ExpressionCell;
+package components.cells.types;
 
 import components.cells.Cell;
 import lib.ExpressionConverter;
