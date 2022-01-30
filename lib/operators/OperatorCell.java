@@ -10,6 +10,12 @@ public class OperatorCell extends Operator<Cell> {
 
   @Override
   public double get() {
-    return Double.parseDouble(operatorType.getValue()); 
+    String value = operatorType.getValue();
+
+    if(value.isEmpty()) {
+      return 0;
+    }
+
+    return Double.parseDouble(value); 
   }
 }
