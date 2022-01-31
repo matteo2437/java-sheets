@@ -5,7 +5,7 @@ import javax.swing.UIManager;
 import components.MenuBar;
 import components.SpreadSheet;
 
-class Main {
+public class Main {
   public static void main(String[] args){
 
     try {

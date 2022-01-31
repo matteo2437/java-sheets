@@ -2,11 +2,18 @@ package components.table.tableRowHeader;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * Row header personalizzato
+ */
 public class TableRowHeader extends JTable {  
   private JTable mainTable;
   private TableRowModel model;
   private int numRows;
 
+  /**
+   * Crea il row header
+   * @param mainTable Tabella principale
+   */
   public TableRowHeader(JTable mainTable){
     super();
     this.mainTable = mainTable;

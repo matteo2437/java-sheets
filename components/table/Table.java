@@ -9,6 +9,9 @@ import java.util.Arrays;
 import components.cells.Cell;
 import components.table.tableRowHeader.TableRowHeader;
 
+/**
+ * Tabella principale
+ */
 public class Table extends JScrollPane {
 	private final JTable mainTable;
 	private final MainTableModel tableModel;
@@ -18,6 +21,11 @@ public class Table extends JScrollPane {
 	private int rows;	
 	private int cols;
 
+	/**
+	 * Crea la tabella
+	 * @param rows Righe tabella
+	 * @param cols Colonne tabella
+	 */
 	public Table(int rows, int cols)	{
 		super();
 		this.rows = rows;
@@ -88,26 +96,47 @@ public class Table extends JScrollPane {
     super.setRowHeaderView(rowHeader);
 	}
 
+	/**
+	 * @return La tabella principale
+	 */
 	public JTable getMainTable() {
 		return mainTable;
 	}
 
+	/**
+	 * @return L'header della tabella
+	 */
 	public TableRowHeader getTableRowHeader() {
 		return rowHeader;
 	}
 
+	/**
+	 * @param rowIndex Riga cella
+	 * @param columnIndex Colonna cella
+	 * @return La cella selezionata
+	 */
 	public Cell getCell(int rowIndex, int columnIndex) {
 		return tableModel.getCell(rowIndex, columnIndex);
 	}
 
+	/**
+	 * @return La matrice di celle
+	 */
 	public Cell[][] getCells() {
 		return tableModel.getCells();
 	}
 
+	/**
+	 * Imposta un valore a tutte le celle
+	 * @param cells Le celle
+	 */
 	public void setCells(Cell[][] cells) {
 		tableModel.setCells(cells);
 	}
 
+	/**
+	 * Aggiorna la tabella
+	 */
 	public void refresh() {
 		tableModel.fireTableStructureChanged();
 	}

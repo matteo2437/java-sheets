@@ -3,6 +3,9 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
+/**
+ * Celle personalizzate per il row header
+ */
 public class TableRowCell implements TableCellRenderer {
   @Override
   public Component getTableCellRendererComponent(

@@ -1,15 +1,23 @@
 package lib.expressions;
 import components.cells.Cell;
 import lib.Utilities;
-import lib.expressions.operators.Operator;
-import lib.expressions.operators.OperatorCell;
-import lib.expressions.operators.OperatorNumber;
+import lib.expressions.operators.Operand;
+import lib.expressions.operators.OperandCell;
+import lib.expressions.operators.OperandNumber;
 
+/**
+ * Convertitore di stringhe a espressioni
+ */
 public class ExpressionConverter {
   private final String expression;
   private final Cell[][] cells;
   private int nextIndex;
 
+  /**
+   * Crea il convertitore di espressioni
+   * @param expression Espressione
+   * @param cells Celle
+   */
   public ExpressionConverter(String expression, Cell[][] cells) {
     this.nextIndex = 0;
     this.cells = cells;
@@ -49,12 +57,12 @@ public class ExpressionConverter {
     return Double.parseDouble(expression.substring(startIndex, index));
   }
   
-  public Operator<?> getOperand() {
+  private Operand<?> getOperand() {
     char character = expression.charAt(nextIndex);
     boolean isStartingWithANumber = isANumber(character);
 
     if(isStartingWithANumber) {
-      return new OperatorNumber(getNumber(nextIndex, true));
+      return new OperandNumber(getNumber(nextIndex, true));
     }
     else {
       int column = getColumn(character);
@@ -63,13 +71,17 @@ public class ExpressionConverter {
       double val = getNumber(nextIndex, false);
       int row = (int)Math.round(val);
 
-      return new OperatorCell(cells[row][column]);
+      return new OperandCell(cells[row][column]);
     }
   }
 
+  /**
+   * Converte l'espressione
+   * @return Espressione
+   */
   public Expression convert() {
-    Operator<?> firstValue;
-    Operator<?> secondValue;
+    Operand<?> firstValue;
+    Operand<?> secondValue;
     char operation;
 
     firstValue = getOperand();

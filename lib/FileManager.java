@@ -18,11 +18,18 @@ import java.util.TimerTask;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Gestore file per lo spreadsheet
+ */
 public class FileManager {
   private final SpreadSheet spreadSheet;
   private boolean autoSave = false;
   private File autoSaveFile;
 
+  /**
+   * Crea gestore file
+   * @param spreadSheet
+   */
   public FileManager(SpreadSheet spreadSheet) {
     this.spreadSheet = spreadSheet;
 
@@ -39,7 +46,7 @@ public class FileManager {
     }, 0, 1000 * 3);
   }
 
-  public void readAutoSaveFilePath() {
+  private void readAutoSaveFilePath() {
     try (
       FileReader fw = new FileReader("paths.txt");
       Scanner sc = new Scanner(fw);
@@ -51,7 +58,7 @@ public class FileManager {
     }
   }
 
-  public void saveAutoSaveFilePath() {
+  private void saveAutoSaveFilePath() {
     try (
       FileWriter fw = new FileWriter("paths.txt");
     ) {
@@ -64,10 +71,9 @@ public class FileManager {
     }
   }
 
-  public void setAutoSave(boolean autoSave) {
-    this.autoSave = autoSave;
-  }
-
+  /**
+   * Carica file auto salvato
+   */
   public void loadAutoSave() {
     boolean canReadFile = autoSaveFile.exists() && autoSaveFile.length() > 0;
 
@@ -75,6 +81,18 @@ public class FileManager {
       load(autoSaveFile);
   } 
 
+  /**
+   * Imposta la modalità di salvataggio
+   * @param autoSave Modalità
+   */
+  public void setAutoSave(boolean autoSave) {
+    this.autoSave = autoSave;
+  }
+
+  /**
+   * Salva la tabella in un file
+   * @param file Il file
+   */
   public void save(File file) {
     try (
       FileOutputStream fos = new FileOutputStream(file);
@@ -87,6 +105,10 @@ public class FileManager {
     }
   }
 
+  /**
+   * Carica la tabella in un file
+   * @param file Il file
+   */
   public void load(File file) {
     try (
       FileInputStream fis = new FileInputStream(file);

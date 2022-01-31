@@ -13,6 +13,9 @@ import java.io.File;
 
 import lib.FileManager;
 
+/**
+ * MenuBar per gestire il caricamento e salvataggio del foglio elettronico
+ */
 public class MenuBar extends JMenuBar{
   private final FileManager fileManager;
   private final JFileChooser fileChooser;
@@ -21,6 +24,10 @@ public class MenuBar extends JMenuBar{
   private final JMenuItem loadMenuItem;
   private final JRadioButtonMenuItem autoSaveMenuItem;
 
+  /**
+   * Creo la menubar
+   * @param spreadSheet Il foglio elettronico
+   */
   public MenuBar(SpreadSheet spreadSheet) {
     super();
 
@@ -52,16 +59,7 @@ public class MenuBar extends JMenuBar{
 
         File saveFile = fileChooser.getSelectedFile();
         if(saveFile.exists()) {
-          int result = JOptionPane.showConfirmDialog(
-            null, 
-            "Vuoi sovrascivere il file?", 
-            "Salva", 
-            JOptionPane.WARNING_MESSAGE
-          );
-
-          if(result == JOptionPane.YES_OPTION) {
-            fileManager.save(saveFile);
-          }
+          rewriteFile(saveFile);
         }
         else {
           fileManager.save(saveFile);
@@ -70,6 +68,19 @@ public class MenuBar extends JMenuBar{
     });
   } 
   
+  private void rewriteFile(File saveFile) {
+    int result = JOptionPane.showConfirmDialog(
+      null, 
+      "Vuoi sovrascivere il file?", 
+      "Salva", 
+      JOptionPane.WARNING_MESSAGE
+    );
+
+    if(result == JOptionPane.YES_OPTION) {
+      fileManager.save(saveFile);
+    }
+  }
+
   private JMenuItem getLoadMenuItem() {
     return new JMenuItem(new AbstractAction("Carica") {
       public void actionPerformed(ActionEvent e) {

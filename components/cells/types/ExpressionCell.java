@@ -3,10 +3,17 @@ package components.cells.types;
 import components.cells.Cell;
 import lib.expressions.ExpressionConverter;
 
+/**
+ * Cella di tipo espressione
+ */
 public class ExpressionCell extends Cell{
   private String expression;
 
-
+  /**
+   * Crea cella di tipo espressione
+   * @param value Valore cella
+   * @param cells Celle
+   */
   public ExpressionCell(String value, Cell[][] cells) {
     super(value, cells);
     this.expression = value;

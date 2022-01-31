@@ -13,10 +13,18 @@ import java.awt.*;
 import components.cells.Cell;
 import components.table.Table;
 
+/**
+ * Foglio elettronico
+ */
 public class SpreadSheet extends JPanel {
   private final Table table;
   private final JTextField textField;
 
+  /**
+   * Crea il foglio elettronico
+   * @param rows Le righe della tabella
+   * @param cols Le colonne della tabella
+   */
   public SpreadSheet(int rows, int cols) {
     super();
     table = new Table(rows, cols);
@@ -87,18 +95,33 @@ public class SpreadSheet extends JPanel {
     super.add(table);
   }
 
+  /**
+   * Restituisce la tabella principale
+   * @return La tabella
+   */
   public JTable getTable() {
     return table.getMainTable();
   }
 
+  /**
+   * Restituisce le celle della tabella
+   * @return Le celle
+   */
   public Cell[][] getCells() {
     return table.getCells();
   }
 
+  /**
+   * Imposta le celle
+   * @param cells Le celle
+   */
   public void setCells(Cell[][] cells) {
     table.setCells(cells);
   }
 
+  /**
+   * Aggiorna la  tabella, con nuove celle
+   */
   public void refresh() {
     table.refresh();
   }

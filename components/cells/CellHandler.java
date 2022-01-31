@@ -5,8 +5,17 @@ import components.cells.types.LabelCell;
 import components.cells.types.NumberCell;
 import lib.Utilities;
 
+/**
+ * Gestore di celle
+ */
 public class CellHandler {
 
+  /**
+   * Restituisce il tipo di cella in base al valore
+   * @param value Valore
+   * @param cells Celle
+   * @return Tipo cella
+   */
   public static Cell getCellType(String value, Cell[][] cells) {
     if(isAnExpression(value))
       return new ExpressionCell(value, cells);

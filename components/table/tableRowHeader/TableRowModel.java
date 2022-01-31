@@ -1,9 +1,16 @@
 package components.table.tableRowHeader;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Modello tabella per il row header
+ */
 public class TableRowModel extends DefaultTableModel {  
 
-  TableRowModel(int numRows){
+  /**
+   * Crea il modello per il row header
+   * @param numRows Numero righe
+   */
+  public TableRowModel(int numRows){
     super();
     super.setRowCount(numRows);
   }

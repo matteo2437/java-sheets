@@ -3,6 +3,9 @@ package components.table;
 import components.cells.Cell;
 import lib.Utilities;
 
+/**
+ * Classe per gestire il sorting di un colonna specifica della tabella
+ */
 public class TableSorter {
   private double unknownValue;
 
@@ -53,11 +56,23 @@ public class TableSorter {
     return cells;
   }
 
+  /**
+   * Ordinamento crescente
+   * @param cells Celle
+   * @param col Colonna delle celle da ordinare
+   * @return Celle con colonna ordinata
+   */
   public Cell[][] sortGrowing(Cell[][] cells, int col) {
     unknownValue = Double.POSITIVE_INFINITY;
     return selectionSort(cells, col);
   }
 
+ /**
+   * Ordinamento decrescente
+   * @param cells Celle
+   * @param col Colonna delle celle da ordinare
+   * @return Celle con colonna ordinata
+   */
   public Cell[][] sortDecreasing(Cell[][] cells, int col) {
     unknownValue = -Double.POSITIVE_INFINITY;
 
